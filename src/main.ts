@@ -1,13 +1,15 @@
 import express from "express"
 import "dotenv/config"
-import cors from "cors"
-import router from "./routes"
+import postsRoutes from './routes/posts'
+import commentsRoutes from './routes/comments'
 
 const app = express()
+const prefix = "/api/v1"
 
-app.use(cors())
 app.use(express.json())
-app.use("/api/v1", router)
+
+app.use(prefix, postsRoutes)
+app.use(prefix, commentsRoutes)
 
 const port: number = Number(process.env.PORT)
 

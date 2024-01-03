@@ -1,6 +1,6 @@
 import SQLite from "better-sqlite3"
-import { Kysely, SqliteDialect } from "kysely"
-import { Database } from "./types"
+import { Kysely, ParseJSONResultsPlugin, SqliteDialect } from "kysely"
+import { Database } from "../../src/types"
 
 export const dialect = new SqliteDialect({
   database: new SQLite(String(process.env.DB_NAME))
@@ -8,6 +8,7 @@ export const dialect = new SqliteDialect({
 
 export const db = new Kysely<Database>({
   dialect,
+  plugins: [new ParseJSONResultsPlugin],
   log(event) {
     if (event.level === "query") {
       console.log(event.query.sql)

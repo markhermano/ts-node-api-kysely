@@ -1,5 +1,7 @@
-import { TodosTable } from "./todo/todo.entity"
+import { PostTable } from "./posts/posts.entity"
+import { CommentTable } from "./comments/comments.entity"
 
 export interface Database {
-  todos: TodosTable
+  posts: PostTable
+  comments: CommentTable
 }
